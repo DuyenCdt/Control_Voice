@@ -24,7 +24,7 @@ bool isSpeaker = false;
 //ChatGPT
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
-const char *chatgpt_token = "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";  //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 //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
+const char *chatgpt_token = "....";  
 String micro = "";
 String res = "";
 //String Answer = "";
@@ -33,9 +33,7 @@ String res = "";
 int i = 0;
 
 //const char*
-const char *mySpeech = "Xin chào tôi là Thaco";  //, hoặc CÔNG TY CỔ PHẦN TẬP ĐOÀN TRƯỜNG HẢI (TRUONG HAI GROUP) tiền thân là Công ty CP Ô tô Trường Hải (THACO) được thành lập vào ngày 29/04/1997, tại Đồng Nai. Người sáng lập là ông Trần Bá Dương, hiện là Chủ tịch Hội đồng Quản trị";
-//String textSpeaker1 = "Xin chào tôi là Thaco, hoặc CÔNG TY CỔ PHẦN TẬP ĐOÀN TRƯỜNG HẢI (TRUONG HAI GROUP) tiền thân là Công ty CP Ô tô Trường Hải (THACO) được thành lập vào ngày 29/04/1997, tại Đồng Nai. Người sáng lập là ông Trần Bá Dương, hiện là Chủ tịch Hội đồng Quản trị";
-//Trải qua 25 năm hình thành và phát triển, từ một công ty chuyên nhập khẩu xe cũ, cung cấp vật tư phụ tùng sửa chữa ô tô, THACO đã phát triển vượt bậc, đưa doanh nghiệp trở thành tập đoàn công nghiệp đa ngành gồm: THACO AUTO (Ô tô), THACO AGRI (Nông Lâm nghiệp); THACO INDUSTRIES (Cơ khí và Công nghiệp hỗ trợ), THADICO (Đầu tư xây dựng), THILOGI (Logistics) và THISO (Thương mại dịch vụ), trong đó các ngành bổ trợ cho nhau và có tính tích hợp cao.";
+const char *mySpeech = "Xin chào tôi là Duyên"; 
 
 void setup() {
 
@@ -59,8 +57,6 @@ void setup() {
   delay(1000);
   ConnectWifi();
   cloudSpeechClient = new CloudSpeechClient(USE_APIKEY);  //khai bao ket noi chatgpt
-
-  // audio.connecttospeech("Xin chào tôi là Thaco", "vi");  // Google TTS
 }
 
 void loop() {
@@ -123,20 +119,6 @@ void loop() {
 
     //////////////// Kết nối ChatGPT //////////////////////////////////////////////////////////////////////////////////////
 
-    //////////////// Lọc câu hỏi //////////////////////////////////////////////////////////////////////////////////////
-    //mySpeech = "Xin chào tôi là Thaco, hoặc CÔNG TY CỔ PHẦN TẬP ĐOÀN TRƯỜNG HẢI (TRUONG HAI GROUP) tiền thân là Công ty CP Ô tô Trường Hải (THACO) được thành lập vào ngày 29/04/1997, tại Đồng Nai";
-
-    // String tatden = "tắt đèn";
-    // String TatDen2 = "Tắt Đèn";
-
-    // if (res == "bật đèn") {
-    //   //digitalWrite(led, HIGH);
-    //   Serial.println("đã bật đèn");
-    // } else if (res.equalsIgnoreCase("Tắt Đèn")) {  //String(result) == "tắt đèn"
-    //   //digitalWrite(led, LOW);
-    //   Serial.println("đã tắt đèn");
-    // }
-    //////////////// Lọc câu hỏi //////////////////////////////////////////////////////////////////////////////////////
     res = "";
     delete micAudio;
     i = 1;
@@ -155,12 +137,12 @@ void loop() {
       speakerAudio = new Audio(false, 3, I2S_NUM_0);
       speakerAudio->setVolume(15);
       speakerAudio->setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT);
-      //const char* mySpeech = "Xin chào tôi là Thaco";
+      //const char* mySpeech = "Xin chào tôi là Duyên";
       if (micro.equalsIgnoreCase("gửi anh xa nhớ"))
         speakerAudio->connecttoFS(SD, "/test.mp3");  // SD
       else
         speakerAudio->connecttospeech(mySpeech, "vi");  // Google TTS
-      //speakerAudio->connecttospeech("Xin chào tôi là Thaco", "vi");  // Google TTS
+      //speakerAudio->connecttospeech("Xin chào tôi là Duyên", "vi");  // Google TTS
 
       isSpeaker = true;
 
